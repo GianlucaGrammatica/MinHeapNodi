@@ -27,10 +27,30 @@ namespace MinHeapNodi
             }
             else
             {
+                HeapNode<T> parent = FindNextPosition();
+                newNode.Parent = parent;
 
+                if(parent.SxSon == null)
+                {
+                    parent.SxSon = newNode;
+                }
+                else
+                {
+                    parent.DxSon = newNode;
+                }
+                HeapifyUp(newNode);
             }
             
             Count++;
+        }
+
+        private void HeapifyUp(HeapNode<T> node)
+        {
+            while (node.Parent != null && node.Value.CompareTo(node.Parent.Value) < 0)
+            {
+                Swap(node, node.Parent);
+                node = node.Parent;
+            }
         }
 
         private HeapNode<T> FindNextPosition()
@@ -45,6 +65,13 @@ namespace MinHeapNodi
             }
 
             return current;
+        }
+
+        private void Swap(HeapNode<T> node1, HeapNode<T> node2)
+        {
+            T temp = node1.Value;
+            node1.Value = node2.Value;
+            node2.Value = temp;
         }
     }
 }

@@ -21,5 +21,19 @@ namespace MinHeapNodi
             SxSon = null;
             DxSon = null;
         }
+
+        public void StampaInConsole()
+        {
+            Console.WriteLine(Value.ToString());
+
+            if(SxSon != null)
+            {
+                SxSon.StampaInConsole();
+            }
+            if(DxSon != null)
+            {
+                DxSon.StampaInConsole();
+            }
+        }
     }
 }
